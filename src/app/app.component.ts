@@ -1,16 +1,30 @@
 import { Component } from '@angular/core';
+import { ActiveService } from './active.service';
+import { InactiveService } from './inactive.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'ng-huflit';
+  activeUsers = ['Max', 'Anna'];
+  inactiveUsers = ['Chris', 'Manu'];
 
-  teachers : Teacher[] = [new Teacher(1,"Cọp"), new Teacher(2,"Beo")];
-  students : Student[] = [new Student(1,"Cọp"), new Student(2,"Beo")];
+  constructor(
+    private _inactiveService: InactiveService,
+    private _activeService: ActiveService
+  ) {}
 
-  
+  onSetToActive(id: number) {
+    this._activeService.onSetToActive(this.activeUsers, this.inactiveUsers, id);
+  }
 
+  onSetToInactive(id: number) {
+    this._inactiveService.onSetToInactive(
+      this.inactiveUsers,
+      this.activeUsers,
+      id
+    );
+  }
 }
