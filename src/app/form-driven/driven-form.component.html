@@ -1,0 +1,38 @@
+<form #formDriven="ngForm" (ngSubmit)="submitForm()">
+  <div class="control">
+    <label for="email">Email</label>
+    <input type="text" ngModel name="email" #email="ngModel" email required />
+    <br />
+    <span class="help-block" *ngIf="!email.valid"
+      >Please enter a valid email</span
+    >
+  </div>
+  <div class="control">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      ngModel
+      name="password"
+      #password="ngModel"
+      password
+      required
+    />
+    <br />
+
+    <span class="help-block" *ngIf="!password.valid"
+      >Please enter a valid password</span
+    >
+  </div>
+  <div class="control">
+    <select
+      id="subscription"
+      [ngModel]="defaultSubscription"
+      name="subscription"
+    >
+      <option *ngFor="let data of subscriptions">
+        {{ data }}
+      </option>
+    </select>
+  </div>
+  <button type="submit">Submit</button>
+</form>
